@@ -1,0 +1,70 @@
+"""
+class #an abstraction
+    similar attrubutes
+    similar methods
+    similar relationships with objects of other classes
+"""
+#student.py
+#pysimplegue.org search: elements
+
+import PySimpleGUI as sg
+
+class StudentForm():
+    def __init__(self): #initianilization method
+
+        #design the from
+        self.frame1 = [
+            [sg.Text ("student", size=(60,1), justification="right")],
+            [sg.Text("Name: ", size=(12,1)), sg.Input(size=(20,1), key="name")],
+            [sg.Text(" ", size=(12,1)), sg.Combo(["DREK"], size=(20,10), enable_events= True, key="selectStudent" , readonly=True)],
+            [sg.Text("Surname: ", size=(12,1)), sg.Input(size=(30,1), key= "surname")],
+            [sg.Text("address: ", size=(12,1)), sg.Input(size=(30,1), key="address")],
+            [sg.Text("Country: ", size=(12,1)), sg.Input(size=(30,1), key="country")],
+            [sg.Text("Study ", size=(12,1)), sg.Input(size=(30,1), key="study")],
+            [sg.Text("Year: ", size=(12,1)), sg.Input(size=(15,1), key="year")],
+            [sg.Text("Gender: ", size=(12,1)), sg.Radio("Female", "R", size=(10,1),key="female"), sg.Radio("Male", "R", size=(10,1), key="male")],
+        ]
+
+        self.layout = [
+            [sg.Frame("Student Data", self.frame1, title_color="yellow")],
+           
+            [
+                sg.Button("Add", size=(12,1), key="add"),
+                sg.Button("Update", size=(12,1), key="update"),
+                sg.Button("Delete", size=(12,1), key="delete"),
+                sg.Button("Close", size=(12,1), key="close"),
+                sg.Button("Populate", size=(12,1), key="populate")
+            ]
+        ]
+
+        #create the student form
+        self.window = sg.Window("Student Form").Layout(self.layout).Finalize()
+
+
+
+        while True:
+            event, values = self.window.Read()
+
+            if event == "add":
+                sg.Popup("I clicked on button Add", values)
+            #self.addstudent(values)
+            elif event == "selstufent":
+                sg.Popup("sel", values)
+            #self.selectsutdent(values)
+            elif event == "populate":
+                sg.Popup("I clicked on tbutton populate", values)
+                #self.populatestudents(values)
+            elif event == "update":
+                sg.Popup("I clicked on button UPdate", values)
+                #self.update students(values)
+            elif event == "delete":
+                sg.Popup("I clicked on the button Delete", values)
+                #self.deletestudent()
+            elif event == "close":
+                break
+
+        self.window.close()
+
+
+if __name__ == "__main__":
+   StudentForm() #if the main is the main the main tells python we r running the source file
